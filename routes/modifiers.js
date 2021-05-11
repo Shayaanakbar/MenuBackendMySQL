@@ -13,4 +13,35 @@ Router.get('/', (req, res) => {
     })
 })
 
+// Get an specific modifiers
+Router.get('/:id', (req, res) => {
+    mySqlConnection.query("SELECT * from modifiers WHERE id = ?", [req.params.id], (err, rows, fields) => {
+        if(!err) {
+            res.send(rows);
+        } else {
+            console.log(err)
+        }
+    })
+})
+
+// delete an modifiers
+Router.delete('/:id', (req, res) => {
+    mySqlConnection.query("DELETE FROM modifiers WHERE id = ?", [req.params.id], (err, rows, fields) => {
+        if(!err) {
+            res.send('Deleted Successfully');
+        } else {
+            console.log(err)
+        }
+    })
+});
+
+// add to modifiers
+Router.post('/', (req, res) => {
+    var postData = req.body;
+    mySqlConnection.query('INSERT INTO modifiers SET ?', postData, function (error, results, fields) {
+        if (error) throw error;
+        res.end(JSON.stringify(results));
+    })
+});
+
 module.exports = Router
