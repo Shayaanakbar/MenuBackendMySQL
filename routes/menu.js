@@ -24,4 +24,15 @@ Router.get('/:id', (req, res) => {
     })
 })
 
+// Delete an menu
+Router.delete('/:id', (req, res) => {
+    mySqlConnection.query("DELETE FROM menus WHERE id = ?", [req.params.id], (err, rows, fields) => {
+        if(!err) {
+            res.send('Deleted Successfully');
+        } else {
+            console.log(err)
+        }
+    })
+})
+
 module.exports = Router
