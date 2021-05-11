@@ -35,5 +35,14 @@ Router.delete('/:id', (req, res) => {
     })
 });
 
+// add to items
+Router.post('/', (req, res) => {
+    var postData = req.body;
+    mySqlConnection.query('INSERT INTO items SET ?', postData, function (error, results, fields) {
+        if (error) throw error;
+        res.end(JSON.stringify(results));
+    })
+});
+
 
 module.exports = Router
