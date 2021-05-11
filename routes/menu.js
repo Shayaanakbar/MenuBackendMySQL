@@ -35,4 +35,9 @@ Router.delete('/:id', (req, res) => {
     })
 })
 
+//edit an menu
+Router.put('/', (req, res) => {
+    mySqlConnection.query('UPDATE `menu`  SET `name`=?, `description`=?', [req.body.name, req.body.description])
+})
+
 module.exports = Router
