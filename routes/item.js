@@ -13,5 +13,16 @@ Router.get('/', (req, res) => {
     })
 })
 
+// Get an specific items
+Router.get('/:id', (req, res) => {
+    mySqlConnection.query("SELECT * from items WHERE id = ?", [req.params.id], (err, rows, fields) => {
+        if(!err) {
+            res.send(rows);
+        } else {
+            console.log(err)
+        }
+    })
+})
+
 
 module.exports = Router
