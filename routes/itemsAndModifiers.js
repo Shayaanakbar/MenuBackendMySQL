@@ -8,7 +8,6 @@ Router.get('/', (req, res) => {
                      items.id,
                      items.menu_description AS title,
                      modifiers.id,
-                     modifiers.menu_id,
                      modifiers.item_id,
                      modifiers.description
                  FROM items
@@ -24,3 +23,4 @@ Router.get('/', (req, res) => {
 })
 
 module.exports = Router
+
