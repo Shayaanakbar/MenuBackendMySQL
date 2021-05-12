@@ -44,4 +44,9 @@ Router.post('/', (req, res) => {
     })
 });
 
+//edit an modifiers
+Router.put('/', (req, res) => {
+    mySqlConnection.query('UPDATE `menu`  SET `name`=?, `description`=?', [req.body.menu_id, req.body.item_id, req.body.description])
+})
+
 module.exports = Router
